@@ -3,6 +3,7 @@ package com;
 import com.mycompany.prepare.utils.Utils;
 import org.junit.Test;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import static org.junit.Assert.assertEquals;
@@ -20,12 +21,15 @@ public class SyncTest {
 
         lock.lock();
         try {
+            lock.tryLock(1000,TimeUnit.MILLISECONDS);
             try {
                 Thread.sleep(1000);
             } catch (Exception e){
                 e.printStackTrace();
             }
             counter++;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             lock.unlock();
         }
