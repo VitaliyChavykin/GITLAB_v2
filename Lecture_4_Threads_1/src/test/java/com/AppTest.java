@@ -15,10 +15,7 @@ public class AppTest {
         }
     }
 
-    /**
-     * TODO: Fix the test. Employ join()
-     * @throws InterruptedException
-     */
+
     @Test
     public void testThread() throws InterruptedException {
 
@@ -29,6 +26,7 @@ public class AppTest {
         Thread thread2 = createThread(myRunnable);
         thread1.start();
         thread2.start();
+        thread2.join();
 
         assertEquals(2, myRunnable.counter);
     }

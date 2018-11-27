@@ -7,8 +7,8 @@ import static org.junit.Assert.assertEquals;
 
 public class VolatileTest extends Thread {
 
-    private static int MY_INT = 0;
-    public static final int WAIT = 5;
+    private static volatile int MY_INT = 0;
+    public  static final int WAIT = 5;
 
     static class ChangeListener extends Thread {
         @Override
@@ -41,10 +41,7 @@ public class VolatileTest extends Thread {
     }
 
 
-    /**
-     * TODO: use volatile and explain why it fixes the problem?
-     * @throws InterruptedException
-     */
+  // volatile give access to change in different threads
     @Test
     public void test() throws InterruptedException {
         Thread listener = new ChangeListener();
